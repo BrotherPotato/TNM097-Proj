@@ -20,16 +20,19 @@ for i = 1:sPT
         colEnd = j * partCols;
         
         % Extract the smaller part
-        smallPart = targetTile(rowStart:rowEnd, colStart:colEnd, :);
+        sample = targetTile(rowStart:rowEnd, colStart:colEnd, :);
         
-        % Compute the average of the smaller part
-        averages(i, j) = mean(mean(smallPart(:)));
+        % Compute the average of L in the sample.
+        sampleLab = rgb2lab(sample); 
+        averages(i, j) = mean(mean(sampleLab(:,:,1))); %L only (light)
     end
 end
 
 % Display the averages
-disp('Averages of each part:');
-disp(averages);
+%disp('Averages of each part:');
+%disp(averages);
+
+outputArg1 = averages;
 
 
 end

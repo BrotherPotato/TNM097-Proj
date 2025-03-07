@@ -53,10 +53,6 @@ function [outputArray] = preprocessImages(imgArray, threshold)
         end %for imgarray
     end %for imgarray
 
-    
-    % Add the last image to the output array
-    %outputArray{end+1} = imgArray{end};
-    
     % Close the waitbar
     close(h);
 end
