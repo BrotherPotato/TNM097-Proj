@@ -34,8 +34,8 @@ if (m(2)~=3)
   xyz2 = reshape(xyz2, prod(m)/3, 3);
 end
 
-lab1 = xyz2lab(xyz1, whitepoint, exp);
-lab2 = xyz2lab(xyz2, whitepoint, exp);
+lab1 = xyz2labV2(xyz1, whitepoint, exp);
+lab2 = xyz2labV2(xyz2, whitepoint, exp);
 
 if (nargin>4)
   if (length(k94)<3)
