@@ -1,5 +1,6 @@
 function mostCommonColours = getImportantColours(im, numberOfColours)
 load("M_XYZ2RGB.mat")
+im = imresize(im, 0.25);
 quantizeLevel = 30;
 histColours = reshape(im(1, 1, :),[3, 1]);
 histColours(4,1) = 0;
@@ -32,8 +33,8 @@ for r = 1:rMax
     end
 end
 [~, histLength] = size(histColours);
-histColours(4,:)
-plot(histColours(4,:))
+%histColours(4,:)
+%plot(histColours(4,:))
 mostCommonColours = zeros(3, numberOfColours);
 for c = 1:numberOfColours
     maxValue = 0;
