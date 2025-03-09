@@ -1,4 +1,4 @@
-function match = comparePrimaryColours(im1Colours,im2Colours)
+function match = comparePrimaryColours(im1Colours,im2Colours, delta)
 load("M_XYZ2RGB.mat")
 match = false;
 
@@ -17,9 +17,9 @@ for c1 = 1:numberOfColours1
         [meanDeltaE, ~] = calcDeltaE(currentColourXYZ', compareColourXYZ');
             
         % if same inc counter
-        if meanDeltaE < 10
+        if meanDeltaE < delta
             match = true;
-            break
+            return
         end
 
         

@@ -1,6 +1,6 @@
 function mostCommonColours = getImportantColours(im, numberOfColours)
 load("M_XYZ2RGB.mat")
-im = imresize(im, 0.25);
+%im = imresize(im, 0.25);
 quantizeLevel = 30;
 histColours = reshape(im(1, 1, :),[3, 1]);
 histColours(4,1) = 0;
