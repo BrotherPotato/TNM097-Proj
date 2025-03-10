@@ -5,9 +5,10 @@ h = waitbar(0, 'Preprocessing Images...');
 numberOfImagesPerTile = 3;
 % Initialize output array
 outputArray = {};
-    
+length(imgArray)    
 %add first image to output array
 outputArray{end+1, 1} = imresize(imgArray{1}, tileRatio);
+%col = imgArray{1, 2};
 outputArray{end, 2} = imgArray{1, 2};
 %colours = getImportantColours(imresize(imgArray{1}, tileRatio), nrOfPrimaryColours);
 %[~, cMax] = size(colours);
@@ -32,7 +33,7 @@ for r = 1:rMax
         currentNumberOfImagesPerTile = 0;
         % for each tile, find colours that work
         for i = 1:length(imgArray)
-            imgAdded = false;
+            shouldAdd = true;
 
             currentPrimaryColours = imgArray{i, 2};
             if currentNumberOfImagesPerTile >= numberOfImagesPerTile || length(addedIndex) == length(imgArray)
@@ -43,14 +44,15 @@ for r = 1:rMax
             if comparePrimaryColours(targetPrimaryColours, currentPrimaryColours, threshold)
                 for ii = 1:length(addedIndex)
                     if i == addedIndex(ii)
-                        imgAdded = true;
+                        shouldAdd = false;
                         break
                     end
                 end
-                if imgAdded == false
+                if shouldAdd == true
                     outputArray{end+1, 1} = imresize(imgArray{i, 1}, tileRatio);
+                    %col = imgArray{i, 2};
                     outputArray{end, 2} = imgArray{i, 2};
-                    addedIndex(end+1) = i;                  
+                    addedIndex(end+1) = i;              
                 end
                 currentNumberOfImagesPerTile = currentNumberOfImagesPerTile + 1;
             end
@@ -71,12 +73,13 @@ for r = 1:rMax
             % check if we need to add the cat
             catAdded = false;
             for ii = 1:length(addedIndex)
-                if bestIndex == ii
+                if bestIndex == addedIndex(ii)
                     catAdded = true;
                 end
             end
             if catAdded == false
                 outputArray{end+1, 1} = imresize(imgArray{bestIndex, 1}, tileRatio);
+                %col = imgArray{bestIndex, 2};
                 outputArray{end, 2} = imgArray{bestIndex, 2};
                 addedIndex(end+1) = bestIndex;
             end

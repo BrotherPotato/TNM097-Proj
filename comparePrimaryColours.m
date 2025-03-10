@@ -8,13 +8,16 @@ match = false;
 
 for c1 = 1:numberOfColours1
     currentColour = im1Colours(:,c1);
-    currentColourXYZ = inv(M_XYZ2RGB) * currentColour;
+    currentColourValue = currentColour(4);
+    currentColourXYZ = inv(M_XYZ2RGB) * currentColour(1:3);
 
     for c2 = 1:numberOfColours2
         compareColour = im2Colours(:,c2);
-        compareColourXYZ = inv(M_XYZ2RGB) * compareColour;
+        compareColourValue = compareColour(4);
+        compareColourXYZ = inv(M_XYZ2RGB) * compareColour(1:3);
 
         [meanDeltaE, ~] = calcDeltaE(currentColourXYZ', compareColourXYZ');
+        meanDeltaE = meanDeltaE * (1/currentColourValue) * (1/compareColourValue);
             
         % if same inc counter
         if meanDeltaE < delta

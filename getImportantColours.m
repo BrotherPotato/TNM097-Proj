@@ -35,7 +35,8 @@ end
 [~, histLength] = size(histColours);
 %histColours(4,:)
 %plot(histColours(4,:))
-mostCommonColours = zeros(3, numberOfColours);
+histColours2 = histColours;
+mostCommonColours = zeros(4, numberOfColours);
 for c = 1:numberOfColours
     maxValue = 0;
     bestIndex = 1;
@@ -46,7 +47,8 @@ for c = 1:numberOfColours
         end
     end
     histColours(4, bestIndex) = 0;
-    mostCommonColours(:, c) = histColours(1:3, bestIndex);
+    histColours2(4, bestIndex) = histColours2(4, bestIndex) / (rMax * cMax);
+    mostCommonColours(:, c) = histColours2(1:4, bestIndex);
 end
 
 mostCommonColours;
