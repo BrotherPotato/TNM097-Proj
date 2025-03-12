@@ -3,7 +3,7 @@ function outputArray = preprocessImages2(imgArray, threshold, tileRatio)
 % Initialize waitbar
 h = waitbar(0, 'Preprocessing Images...');
 % Initialize output array
-maxNumberOfImages = 200;
+maxNumberOfImages = 300;
 outputArray = {};
 length(imgArray)    
 %add first image to output array
