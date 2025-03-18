@@ -1,4 +1,4 @@
-function outputArray = preprocessImages2(imgArray, threshold, tileRatio)
+function outputArray = preprocessImages2(imgArray, threshold)
 
 % Initialize waitbar
 h = waitbar(0, 'Preprocessing Images...');
@@ -7,7 +7,8 @@ maxNumberOfImages = 300;
 outputArray = {};
 length(imgArray)    
 %add first image to output array
-outputArray{end+1, 1} = imresize(imgArray{1}, tileRatio);
+%outputArray{end+1, 1} = imresize(imgArray{1}, tileRatio);
+outputArray{end+1, 1} = imgArray{1, 1};
 outputArray{end, 2} = imgArray{1, 2};
 %addedIndex(1) = 0;
 
@@ -36,7 +37,8 @@ for i = 1:length(imgArray)
         end
 
         if shouldAdd == true
-            outputArray{end+1, 1} = imresize(imgArray{i, 1}, tileRatio);
+            %outputArray{end+1, 1} = imresize(imgArray{i, 1}, tileRatio);
+            outputArray{end+1, 1} = imgArray{i, 1};
             outputArray{end, 2} = imgArray{i, 2};
         end
 

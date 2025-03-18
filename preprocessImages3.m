@@ -1,4 +1,4 @@
-function outputArray = preprocessImages3(imgArray, targetColours, threshold, tileRatio, nrOfPrimaryColours)
+function outputArray = preprocessImages3(imgArray, targetColours, threshold, nrOfPrimaryColours)
 
 % Initialize waitbar
 h = waitbar(0, 'Preprocessing Images...');
@@ -7,7 +7,8 @@ numberOfImagesPerTile = 3;
 outputArray = {};
 length(imgArray)    
 %add first image to output array
-outputArray{end+1, 1} = imresize(imgArray{1}, tileRatio);
+%outputArray{end+1, 1} = imresize(imgArray{1}, tileRatio);
+outputArray{end+1, 1} = imgArray{1};
 %col = imgArray{1, 2};
 outputArray{end, 2} = imgArray{1, 2};
 %colours = getImportantColours(imresize(imgArray{1}, tileRatio), nrOfPrimaryColours);
@@ -49,7 +50,8 @@ for r = 1:rMax
                     end
                 end
                 if shouldAdd == true
-                    outputArray{end+1, 1} = imresize(imgArray{i, 1}, tileRatio);
+                    %outputArray{end+1, 1} = imresize(imgArray{i, 1}, tileRatio);
+                    outputArray{end+1, 1} = imgArray{i, 1};
                     %col = imgArray{i, 2};
                     outputArray{end, 2} = imgArray{i, 2};
                     addedIndex(end+1) = i;              
@@ -78,7 +80,8 @@ for r = 1:rMax
                 end
             end
             if catAdded == false
-                outputArray{end+1, 1} = imresize(imgArray{bestIndex, 1}, tileRatio);
+                %outputArray{end+1, 1} = imresize(imgArray{bestIndex, 1}, tileRatio);
+                outputArray{end+1, 1} = imgArray{bestIndex, 1};
                 %col = imgArray{bestIndex, 2};
                 outputArray{end, 2} = imgArray{bestIndex, 2};
                 addedIndex(end+1) = bestIndex;
